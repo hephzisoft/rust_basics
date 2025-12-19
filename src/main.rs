@@ -1,49 +1,16 @@
-// Struct #2
-//
-// struct with functions
-//
-struct Education {
-    college_name: String,
-    major_title: String,
-    minor_title: String,
-}
-
-// the impl keyword is primary used to define
-// implmentation on types.
-//
-impl Education {
-    fn constructing_education(college: &str, major: &str, minor: &str) -> Self {
-        Education {
-            college_name: college.to_string(),
-            major_title: major.to_string(),
-            minor_title: minor.to_string(),
-        }
-    }
-
-    fn full_education(&self) -> String {
-        format!(
-            "{}, {}, {}",
-            self.college_name, self.major_title, self.minor_title
-        )
-    }
-     // Chnage major
-        fn change_major(&mut self, major: &str){
-            self.major_title =major.to_string();
-        }
-    
-}
+use std::{collections::HashMap, io};
 
 fn main() {
-    let mut  education1 = Education::constructing_education("Cambridge", "Maths", "Astrophysics");
+    // design the text interface
+    let mut text_interface = String::new();
 
-    println!(
-        "Education: College: {} \nMajor: {} \nMinor: {}",
-        education1.college_name, education1.major_title, education1.minor_title
-    );
+    io::stdin()
+        .read_line(&mut text_interface)
+        .expect("Failed to read line");
 
-    println!("Education: {}", education1.full_education());
+    let instructions: Vec<&str> = text_interface.split_ascii_whitespace().collect();
 
-    education1.change_major("Computer Science");
+    let departments: [&str; 4] = ["Science", "Technology", "Sales", "Finance"];
 
-    println!("Education: {}", education1.full_education());
+    let all_people_in_department : HashMap<&str,Vec<String> > =HashMap::new();
 }
